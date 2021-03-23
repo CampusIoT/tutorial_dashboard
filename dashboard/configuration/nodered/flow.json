@@ -24,7 +24,7 @@
         "id": "b23a6a86.69b218",
         "type": "tab",
         "label": "Payloard Codec",
-        "disabled": true,
+        "disabled": false,
         "info": ""
     },
     {
@@ -132,6 +132,15 @@
         "type": "inject",
         "z": "8ef8462d.3e5728",
         "name": "DROP all",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -348,6 +357,15 @@
         "type": "inject",
         "z": "8ef8462d.3e5728",
         "name": "CREATE DATABASE lorawan",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -410,6 +428,15 @@
         "type": "inject",
         "z": "8ef8462d.3e5728",
         "name": "DROP DATABASE lorawan",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -777,7 +804,7 @@
         "type": "debug",
         "z": "8ef8462d.3e5728",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -791,7 +818,7 @@
         "type": "debug",
         "z": "8ef8462d.3e5728",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -812,8 +839,8 @@
         "y": 180,
         "wires": [
             [
-                "97bd28ab.859f88",
-                "b7a128b1.2adae"
+                "b7a128b1.2adae",
+                "a029da63.bd63a"
             ]
         ]
     },
@@ -916,7 +943,7 @@
         "topic": "application/+/device/+/ack",
         "qos": "2",
         "datatype": "auto",
-        "broker": "f75893bf.fe0438",
+        "broker": "475864c9.5c678c",
         "x": 120,
         "y": 120,
         "wires": [
@@ -933,7 +960,7 @@
         "topic": "application/+/device/+/error",
         "qos": "2",
         "datatype": "auto",
-        "broker": "f75893bf.fe0438",
+        "broker": "475864c9.5c678c",
         "x": 120,
         "y": 80,
         "wires": [
@@ -1039,7 +1066,7 @@
         "topic": "application/+/device/+/status",
         "qos": "2",
         "datatype": "auto",
-        "broker": "f75893bf.fe0438",
+        "broker": "475864c9.5c678c",
         "x": 130,
         "y": 160,
         "wires": [
@@ -1070,7 +1097,7 @@
         "topic": "gateway/1234567890abcdef/event/stats",
         "qos": "2",
         "datatype": "auto",
-        "broker": "f75893bf.fe0438",
+        "broker": "475864c9.5c678c",
         "x": 120,
         "y": 80,
         "wires": [
@@ -1130,12 +1157,12 @@
         "type": "mqtt in",
         "z": "74429ff4.4ff848",
         "name": "Gateway Up +",
-        "topic": "gateway/1234567890abcdef/event/up",
+        "topic": "gateway/0080e1ffff015257/event/up",
         "qos": "2",
         "datatype": "auto",
-        "broker": "f75893bf.fe0438",
+        "broker": "475864c9.5c678c",
         "x": 110,
-        "y": 240,
+        "y": 260,
         "wires": [
             [
                 "3991c42c.3a3bac"
@@ -1154,7 +1181,8 @@
         "y": 240,
         "wires": [
             [
-                "9ce4514d.9e1ec"
+                "9ce4514d.9e1ec",
+                "456575b5.d464fc"
             ]
         ]
     },
@@ -1212,10 +1240,10 @@
         "type": "mqtt in",
         "z": "74429ff4.4ff848",
         "name": "Gateway Dn +",
-        "topic": "gateway/1234567890abcdef/event/dn",
+        "topic": "gateway/+/event/dn",
         "qos": "2",
         "datatype": "auto",
-        "broker": "f75893bf.fe0438",
+        "broker": "475864c9.5c678c",
         "x": 110,
         "y": 360,
         "wires": [
@@ -1266,7 +1294,8 @@
         "y": 240,
         "wires": [
             [
-                "9925749c.2b32c"
+                "9925749c.2b32c",
+                "f8db9a84.e4b37"
             ]
         ]
     },
@@ -1289,13 +1318,13 @@
         "type": "debug",
         "z": "176e4c9f.1fe43b",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "payload",
-        "x": 1210,
-        "y": 320,
+        "x": 1230,
+        "y": 340,
         "wires": []
     },
     {
@@ -1369,7 +1398,7 @@
         "type": "mqtt in",
         "z": "176e4c9f.1fe43b",
         "name": "Devices Rx App 100",
-        "topic": "application/100/device/+/rx",
+        "topic": "application/+/device/+/rx",
         "qos": "2",
         "datatype": "auto",
         "broker": "475864c9.5c678c",
@@ -1407,6 +1436,120 @@
         "wires": [
             [
                 "cbebb845.774e68"
+            ]
+        ]
+    },
+    {
+        "id": "fa476fd.769739",
+        "type": "function",
+        "z": "74429ff4.4ff848",
+        "name": "inject gateway",
+        "func": "msg.payload = {\"phyPayload\":\"AAQAAAYAX2MgRw0AQwBfYyADgbQ1bPg=\",\n \"txInfo\":{\"frequency\":868500000,\"modulation\":\"LORA\",\n \"loRaModulationInfo\":{\"bandwidth\":125,\"spreadingFactor\":12,\"codeRate\":\"4/5\",\"polarizationInversion\":false}},\"rxInfo\":{\"gatewayID\":\"0000024b080603a3\",\"time\":\"2021-03-16T13:34:32.727770Z\",\"timeSinceGPSEpoch\":null,\"rssi\":-113,\"loRaSNR\":-15.8,\"channel\":7,\"rfChain\":1,\"board\":0,\"antenna\":0,\"location\":null,\"fineTimestampType\":\"NONE\",\"context\":\"3uHj3A==\",\"uplinkID\":\"F3mPyL4UQgOvSIvb5G6MLw==\",\"crcStatus\":\"CRC_OK\",\"subband\":\"g1\",\"dr\":0,\"toa\":1811},\"phyPayloadBuffer\":[0,32,99,95,0,6,0,0,4,32,99,95,0,67,0,13,71,3,129,180,53,108,248],\"frametype\":\"jreq\",\"appeui\":\"20635f0006000004\",\"deveui\":\"20635f0043000d47\"};\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 430,
+        "y": 520,
+        "wires": [
+            [
+                "9ce4514d.9e1ec"
+            ]
+        ]
+    },
+    {
+        "id": "50369f6e.e4fab",
+        "type": "inject",
+        "z": "74429ff4.4ff848",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 520,
+        "wires": [
+            [
+                "fa476fd.769739"
+            ]
+        ]
+    },
+    {
+        "id": "689a634.2835b9c",
+        "type": "mqtt in",
+        "z": "74429ff4.4ff848",
+        "name": "Gateway Up +",
+        "topic": "gateway/+/event/up",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "475864c9.5c678c",
+        "x": 110,
+        "y": 200,
+        "wires": [
+            [
+                "3991c42c.3a3bac"
+            ]
+        ]
+    },
+    {
+        "id": "456575b5.d464fc",
+        "type": "debug",
+        "z": "74429ff4.4ff848",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "f8db9a84.e4b37",
+        "type": "debug",
+        "z": "176e4c9f.1fe43b",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "a029da63.bd63a",
+        "type": "function",
+        "z": "b23a6a86.69b218",
+        "name": "Flatten LPP",
+        "func": "var p = msg.payload;\n\nfunction FlattenLPP(json) {\n    var o = {};\n    for (const p in json) {\n        var value = json[p];\n        if(typeof(value) === 'number') {\n            o[p] = value;\n        } else if(typeof(value) === 'object'){\n            for (const p2 in value) {\n                var value2 = value[p2];\n                if(typeof(value2) === 'number') {\n                    o[p + p2] = value2;\n                }\n            }\n        }\n    }\n    return o    \n}\n\nvar json = msg.payload.object;\n\nif(json) {\n    var o = FlattenLPP(json);\n    if(o) {\n        msg.payload.object = o;\n        return msg;\n    }\n}\n\nreturn undefined;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 770,
+        "y": 180,
+        "wires": [
+            [
+                "97bd28ab.859f88"
             ]
         ]
     }
